@@ -3,6 +3,10 @@ package com.ofg.twitter.place.extractor
 import com.codahale.metrics.Meter
 import com.codahale.metrics.MetricRegistry
 import com.ofg.infrastructure.web.resttemplate.fluent.ServiceRestClient
+import com.ofg.loan.application.frauddetection.FraudDetectionClient
+import com.ofg.loan.application.frauddetection.FraudDetectionJsonBuilder
+import com.ofg.loan.application.frauddetection.LoanApplicationPropagatingWorker
+import com.ofg.loan.application.frauddetection.PropagationWorker
 import com.ofg.twitter.place.extractor.metrics.ExtractorMetricsConfiguration
 import com.ofg.twitter.place.extractor.metrics.MatchProbabilityMetrics
 import org.springframework.beans.factory.annotation.Value
@@ -28,20 +32,20 @@ class PlaceExtractorConfiguration {
     }
     
     @Bean
-    PlacesJsonBuilder placesJsonBuilder() {
-        return new PlacesJsonBuilder()
+    FraudDetectionJsonBuilder placesJsonBuilder() {
+        return new FraudDetectionJsonBuilder()
     }
     
     @Bean
     PropagationWorker propagationWorker(PlacesExtractor placesExtractor,
-                                        PlacesJsonBuilder placesJsonBuilder,
-                                        ColleratorClient colleratorClient) {
-        return new PlacePropagatingWorker(placesExtractor, placesJsonBuilder, colleratorClient)
+                                        FraudDetectionJsonBuilder placesJsonBuilder,
+                                        FraudDetectionClient colleratorClient) {
+        return new LoanApplicationPropagatingWorker(placesExtractor, placesJsonBuilder, colleratorClient)
     }
 
     @Bean
-    ColleratorClient colleratorClient(ServiceRestClient serviceRestClient) {
-        return new ColleratorClient(serviceRestClient)
+    FraudDetectionClient colleratorClient(ServiceRestClient serviceRestClient) {
+        return new FraudDetectionClient(serviceRestClient)
     }
 
 }

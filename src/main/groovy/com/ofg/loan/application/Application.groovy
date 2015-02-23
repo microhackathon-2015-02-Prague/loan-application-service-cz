@@ -1,4 +1,4 @@
-package com.ofg.twitter
+package com.ofg.loan.application
 
 import com.ofg.infrastructure.environment.EnvironmentSetupVerifier
 import groovy.transform.TypeChecked

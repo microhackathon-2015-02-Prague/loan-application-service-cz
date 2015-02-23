@@ -2,6 +2,8 @@
 spring:
   jackson.deserialization.fail-on-unknown-properties: false
   groovy.template.check-template-location: false
+  stubrunner.use-microservice-definitions: true
+  stubrunner.skip-local-repo: true
 
 rest.api.version: 1.0
 city.finding.service.url: "http://api.openweathermap.org/data/2.5/weather"
@@ -10,7 +12,7 @@ graphite:
   host: graphite.hackathon.dev.4finance.net
 
 metrics.path:
-  country: pl
+  country: cz
   app: loan-application-service-cz
 
 stubrunner.stubs:
