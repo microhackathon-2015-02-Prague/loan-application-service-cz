@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull
 import java.util.concurrent.Callable
 
 import static com.ofg.config.Versions.LOAN_APPLICATION_JSON_VERSION_1
-import static org.springframework.web.bind.annotation.RequestMethod.PUT
+import static org.springframework.web.bind.annotation.RequestMethod.POST
 
 @Slf4j
 @RestController
@@ -33,7 +33,7 @@ class LoanApplicationController {
 
     @RequestMapping(
             value = '{clientId}',
-            method = PUT,
+            method = POST,
             consumes = LOAN_APPLICATION_JSON_VERSION_1,
             produces = LOAN_APPLICATION_JSON_VERSION_1)
     @ApiOperation(value = "Async generation of loan application and propagating of further process of decision making",

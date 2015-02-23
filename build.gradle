@@ -169,7 +169,7 @@ if(project.hasProperty("coverage")) {
 }
 
 accurest {
-    baseClassForTests = 'com.ofg.twitter.places.accurest.BaseMockMvcSpec'
+    baseClassForTests = 'com.ofg.base.BaseMockMvcSpec'
     basePackageForTests = 'accurest'
     contractsDslDir = contractsDir
     generatedTestSourcesDir = file("${project.rootDir}/src/test/groovy/")
